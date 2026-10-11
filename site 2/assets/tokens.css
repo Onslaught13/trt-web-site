@@ -1,0 +1,34 @@
+:root{
+  --tribe-warm-white:#f0eeeb; --tribe-off-black:#292827; --tribe-true-black:#000;
+  --tribe-graphite:#393837; --tribe-charcoal:#30302f; --tribe-light-gray:#d6d3ce;
+  --tribe-bright-white:#fff; --tribe-middle-gray:#938f89; --tribe-pale-steel:#c2bfba;
+  --tribe-signal:#e8a33d;
+
+  --font-sans:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --text-nav:14px; --text-label:12px; --text-body:19px;
+  --text-display-xl:clamp(56px,10.5vw,148px);
+
+  --space-6:6px; --space-10:10px; --space-12:12px; --space-13:13px; --space-15:15px;
+  --space-18:18px; --space-30:30px; --space-55:55px;
+  --radius-btn:6px; --radius-card:12px; --radius-icon:2px;
+  --ease-calm:cubic-bezier(.22,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--tribe-warm-white);color:var(--tribe-off-black);font-family:var(--font-sans);
+  font-feature-settings:"ss01";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.label,.eyebrow,.btn{font-family:var(--font-mono);font-weight:700;font-size:var(--text-label);
+  line-height:1;text-transform:uppercase;letter-spacing:.72px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--radius-btn);
+  white-space:nowrap;transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease-calm)}
+.btn--light{background:var(--tribe-warm-white);color:var(--tribe-off-black);padding:var(--space-13) var(--space-15)}
+.btn--light:hover{background:var(--tribe-bright-white)}
+.btn--outline{background:rgba(0,0,0,.8);color:var(--tribe-warm-white);border:1px solid var(--tribe-warm-white);padding:var(--space-15)}
+.btn--outline:hover{background:var(--tribe-warm-white);color:var(--tribe-off-black)}
+.btn--ghost{background:var(--tribe-off-black);color:var(--tribe-warm-white);padding:var(--space-12) var(--space-13)}
+.btn--ghost:hover{background:var(--tribe-true-black)}
+:focus-visible{outline:2px solid var(--tribe-warm-white);outline-offset:3px}

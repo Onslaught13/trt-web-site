@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rescue Tribe — Unworking the fall</title>
+<meta name="description" content="The Rescue Tribe is a people first company, creating tech abundance in the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/hero.css">
+</head>
+<body>
+<header class="nav" data-nav>
+  <a class="nav__brand" href="#" aria-label="The Rescue Tribe home"><svg class="nav__mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="669 423 594 1102" fill="currentColor"><path d="M669 423H938V632H834V527H669Z"/><path d="M994 423H1263V527H1098V632H994Z"/><path d="M669 688H1263V951H1098V1043H993V847H1159V792H773V1043H669Z"/><path d="M833 847H937V1043H833Z"/><path d="M669 1099H1263V1203H669Z"/><path d="M669 1259H1263V1363H1019V1525H915V1363H669Z"/></svg></a>
+  <nav class="nav__links" aria-label="Primary">
+    <a class="btn btn--chip" href="#products">Products</a>
+    <a class="btn btn--chip" href="#partners">Partners</a>
+  </nav>
+  <a class="btn btn--light" href="#contact">Connect</a>
+</header>
+
+<main>
+<section class="hero" data-hero>
+  <div class="hero__media" data-media aria-hidden="true">
+    <video class="hero__video" data-video-loop muted loop playsinline preload="auto" src="assets/video/hero-loop.mp4"></video>
+    <video class="hero__video" data-video-intro muted playsinline preload="auto" src="assets/video/hero.mp4"></video>
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <h1 class="hero__title" data-title>Unworking the fall</h1>
+    <div class="hero__row" data-after>
+      <p class="hero__lede">The Rescue Tribe is a people first company,<br class="br-m"> creating tech abundance in the world.</p>
+    </div>
+  </div>
+  <div class="hero__progress" aria-hidden="true"><span data-progress></span></div>
+</section>
+</main>
+
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/SplitText.min.js"></script>
+<script src="assets/hero.js"></script>
+</body>
+</html>
