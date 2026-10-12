@@ -4,7 +4,7 @@
 **Theme:** light canvas, dark cinematic hero · **Voice:** quiet, precise, human. Short declaratives. Sentence case. No exclamation marks.
 
 ## Principles
-1. **Colour is absent on purpose.** The neutral palette runs `#f0eeeb → #000000`. The only "signal" is the live-status dot (Signal Amber), used once per view.
+1. **Colour is absent on purpose.** The neutral palette runs `#f0eeeb → #000000`. The only "signal" is Signal Amber: the live-status dot, plus the pointer light (a ~100px halo under the cursor / tap) — used sparingly, never as a fill.
 2. **Type is the hero.** Light-weight (400) display type, tightly tracked, set large. Never bold for display.
 3. **Equipment markings.** All labels, eyebrows and buttons are uppercase mono 700 / 12px — like stencilling on a rescue kit.
 4. **Geometry over shadow.** 12px clipped corners, hairline strokes, translucency. No drop shadows on surfaces.
@@ -30,7 +30,7 @@ The Rescue Tribe is a **redemptive tech company** whose vision is **tech abundan
 | `--tribe-bright-white` | `#ffffff` | Raised media cards only |
 | `--tribe-middle-gray` | `#938f89` | Secondary copy, hairlines |
 | `--tribe-pale-steel` | `#c2bfba` | Borders, separators (never a CTA fill) |
-| `--tribe-signal` | `#e8a33d` | **Live status dot only** — the sole accent |
+| `--tribe-signal` | `#e8a33d` | **Live status dot + pointer light only** — the sole accent |
 
 ## Typography
 Primary **Inter** (substitute for Agility Diatype), mono **IBM Plex Mono**. OpenType `ss01` where supported.
@@ -69,3 +69,7 @@ Radii: buttons 6 · cards/nav 12 · icons 2 · destination pills 24. Nothing lar
 - Keep controls minimal; one primary and one secondary action per view.
 ## Don't
 - No saturated UI colours beyond the single status dot. No 9999px pills. No shadows on cards. No radius > 12px (except 24px destination pills). No bold display type.
+
+
+## Pointer light (hero)
+A Signal Amber halo (~100px; 120px on touch) follows the cursor over the footage, with a gentle 30% dim around it. On touch, a tap makes a patch glow and it recedes 3s after the finger lifts. Disabled for `prefers-reduced-motion`. Tuning: `R_MOUSE` / `R_TOUCH` / `HOLD` in `assets/hero.js`; strengths in `assets/hero.css` (`.hero__glow`, `.hero__veil`).
