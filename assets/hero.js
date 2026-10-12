@@ -76,4 +76,9 @@ gsap.ticker.add(() => {
 });
 
 if (reduce) { loop.style.zIndex = 2; intro.style.display = 'none'; }
-else intro.play().catch(() => {});
+else {
+  const INTRO_RATE = 1.2; // speed up the opening film
+  intro.playbackRate = INTRO_RATE;
+  intro.addEventListener('loadedmetadata', () => { intro.playbackRate = INTRO_RATE; });
+  intro.play().catch(() => {});
+}
