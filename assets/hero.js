@@ -27,24 +27,34 @@ document.fonts.ready.then(() => {
     .fromTo(media, { scale: 1.14 }, { scale: 1.06, duration: 2.6, ease: 'power2.out' }, 0);
 });
 
-function scramble(ch, delay) {
-  const final = ch.dataset.final, state = { t: 0 }, spin = .5 + Math.random() * .45;
+function scramble(ch, delay, land) {
+  const final = ch.dataset.final, state = { t: 0 }, spin = Math.max(.4, land - delay);
   let last = -1;
   gsap.to(state, {
     t: 1, duration: spin, delay, ease: 'none',
     onStart: () => gsap.set(ch, { autoAlpha: 1 }),
     onUpdate: () => {
-      const step = Math.floor(state.t * spin / .045); // swap glyph ~22x per second
+      const step = Math.floor(state.t * spin / .04); // swap glyph ~25x per second
       if (step !== last) { last = step; ch.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)]; }
     },
     onComplete: () => { ch.textContent = final; }
   });
 }
+// Real seconds left until the film reaches TITLE_END (so the decode finishes as the film hits that mark).
+function decodeSpan() {
+  if (active === intro && intro.duration && !intro.paused) return Math.max(1.5, (intro.duration * TITLE_END - intro.currentTime) / intro.playbackRate);
+  return 3; // no film clock (scroll / tap / autoplay blocked)
+}
 function typeTitle() {
   if (typed || reduce || !chars.length) return;
   typed = true;
-  chars.forEach((ch, i) => scramble(ch, i * .07 + Math.random() * .05));
-  gsap.to('[data-after]', { autoAlpha: 1, y: 0, duration: 1, stagger: .15, ease: 'power3.out', delay: chars.length * .07 + .9 });
+  const span = decodeSpan(), n = chars.length;
+  chars.forEach((ch, i) => {
+    // everyone starts spinning at once; letters lock in left to right across the back 60% of the window
+    const land = span * (.4 + .6 * (i + 1) / n) + (Math.random() - .5) * .15;
+    scramble(ch, i * .03, Math.min(span, land));
+  });
+  gsap.to('[data-after]', { autoAlpha: 1, y: 0, duration: 1, stagger: .15, ease: 'power3.out', delay: span + .05 });
 }
 ['wheel', 'touchmove', 'keydown'].forEach(e => addEventListener(e, typeTitle, { once: true, passive: true }));
 addEventListener('scroll', typeTitle, { once: true, passive: true });
@@ -60,6 +70,7 @@ if (!reduce) {
 // so the hand-off is invisible and the loop never zooms or fades.
 const bar = document.querySelector('[data-progress]');
 let active = intro;
+const TITLE_END = .8; // fraction of the film at which the headline has fully decoded and the subline appears
 const TITLE_AT = 5; // seconds of footage at which the headline starts decoding (film is ~15s)
 
 function handOff() {
