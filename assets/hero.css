@@ -52,7 +52,6 @@
 /* Small screens: the statement stacks on two lines and gets bigger */
 @media (max-width:900px){
   .hero__title{font-size:min(12.5vw,84px)}
-  .hero__title .word:first-child{display:block}
 }
 
 
@@ -75,7 +74,8 @@
   linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.45) 38%,rgba(0,0,0,.1) 70%,rgba(0,0,0,.35) 100%),
   linear-gradient(to right,rgba(0,0,0,.55),transparent 65%)}
 
-@media (min-width:901px){.hero__title{white-space:nowrap}}
+/* "the fall" always wraps under "Unworking", at every width */
+.hero__title .line:first-child .word:first-child{display:block!important} /* SplitText sets display inline-block inline on each word */
 
 
 /* room for the descender of the "g" above the paragraph */
