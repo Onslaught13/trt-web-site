@@ -136,3 +136,39 @@ else {
   intro.addEventListener('loadedmetadata', () => { intro.playbackRate = INTRO_RATE; });
   intro.play().catch(() => {});
 }
+
+
+// Pointer light: halo follows the mouse; on touch, a tap makes a patch of the screen glow and it recedes 3s after the finger lifts.
+if (!reduce) {
+  const hero = document.querySelector('[data-hero]');
+  const L = { x: 0, y: 0, r: 0, o: 0 };
+  const R_MOUSE = 300, R_TOUCH = 210, HOLD = 3;
+  let hold, live = false;
+  const toX = gsap.quickTo(L, 'x', { duration: .55, ease: 'power3.out' });
+  const toY = gsap.quickTo(L, 'y', { duration: .55, ease: 'power3.out' });
+  const spot = e => { const b = hero.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+  gsap.ticker.add(() => {
+    if (!live && L.o < .001) return;
+    hero.style.setProperty('--lx', L.x + 'px'); hero.style.setProperty('--ly', L.y + 'px');
+    hero.style.setProperty('--lr', L.r + 'px'); hero.style.setProperty('--lo', L.o);
+    if (!live && L.o < .001) hero.style.setProperty('--lo', 0);
+  });
+  function light(e, radius, snap) {
+    const [x, y] = spot(e);
+    if (snap || L.o < .05) { L.x = x; L.y = y; } else { toX(x); toY(y); } // jump on first contact, glide afterwards
+    live = true; hold?.kill();
+    gsap.to(L, { o: 1, duration: .5, ease: 'power2.out', overwrite: 'auto' });
+    gsap.to(L, { r: radius, duration: snap ? .6 : 1, ease: 'power3.out' });
+  }
+  function dim(delay, dur) {
+    hold?.kill();
+    hold = gsap.delayedCall(delay, () => {
+      gsap.to(L, { o: 0, duration: dur, ease: 'power2.inOut' });
+      gsap.to(L, { r: L.r * .55, duration: dur, ease: 'power2.inOut', onComplete: () => { live = false; } });
+    });
+  }
+  hero.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || e.pointerType === 'pen') light(e, R_MOUSE, false); else if (live) { const [x, y] = spot(e); toX(x); toY(y); } });
+  hero.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') dim(0, .7); });
+  hero.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') light(e, R_TOUCH, true); });
+  ['pointerup', 'pointercancel'].forEach(t => hero.addEventListener(t, e => { if (e.pointerType === 'touch') dim(HOLD, .9); }));
+}

@@ -16,6 +16,13 @@
 .hero__grain{position:absolute;inset:0;z-index:-1;opacity:.06;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 
+/* Pointer light: a soft warm-white halo that follows the cursor (or a tap) and lifts the footage under it; a faint veil dims the rest.
+   Driven by --lx/--ly (px), --lr (radius px) and --lo (0-1) set from hero.js. */
+.hero__veil,.hero__glow{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:var(--lo,0)}
+.hero__veil{background:radial-gradient(circle calc(var(--lr,0px) * 2.2) at var(--lx,50%) var(--ly,50%),transparent 0%,rgba(0,0,0,.62) 100%)}
+.hero__glow{mix-blend-mode:screen;
+  background:radial-gradient(circle var(--lr,0px) at var(--lx,50%) var(--ly,50%),rgba(240,238,235,.55) 0%,rgba(240,238,235,.24) 45%,rgba(240,238,235,0) 100%)}
+
 .hero__content{width:100%;padding:0 var(--space-18) 60px;display:flex;flex-direction:column;gap:var(--hero-gap)}
 .hero__title{font-family:var(--font-hero);font-weight:400;font-size:var(--text-display-hero);line-height:1;letter-spacing:0;
   text-transform:uppercase;max-width:none;margin-bottom:-.27em} /* trims Astrobia's empty line-box space under the caps so --hero-gap is the visible gap */
