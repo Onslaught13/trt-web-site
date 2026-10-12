@@ -11,6 +11,7 @@
 <link rel="preload" href="assets/fonts/astrobia.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/hero.css">
+<link rel="stylesheet" href="assets/pager.css">
 </head>
 <body>
 <header class="nav" data-nav>
@@ -23,7 +24,7 @@
 </header>
 
 <main>
-<section class="hero" data-hero>
+<section class="hero" data-hero data-page data-page-label="Origin">
   <div class="hero__media" data-media aria-hidden="true">
     <video class="hero__video" data-video-loop muted loop playsinline preload="auto" src="assets/video/hero-loop.mp4"></video>
     <video class="hero__video" data-video-intro muted playsinline preload="auto" src="assets/video/hero.mp4"></video>
@@ -49,5 +50,6 @@
 <script src="assets/js/ScrollTrigger.min.js"></script>
 <script src="assets/js/SplitText.min.js"></script>
 <script src="assets/hero.js"></script>
+<script src="assets/pager.js"></script>
 </body>
 </html>
