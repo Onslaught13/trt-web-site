@@ -142,7 +142,7 @@ else {
 if (!reduce) {
   const hero = document.querySelector('[data-hero]');
   const L = { x: 0, y: 0, r: 0, o: 0 };
-  const R_MOUSE = 300, R_TOUCH = 210, HOLD = 3;
+  const R_MOUSE = 100, R_TOUCH = 100, HOLD = 3;
   let hold, live = false;
   const toX = gsap.quickTo(L, 'x', { duration: .55, ease: 'power3.out' });
   const toY = gsap.quickTo(L, 'y', { duration: .55, ease: 'power3.out' });
