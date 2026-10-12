@@ -67,9 +67,34 @@ function typeTitle() {
     const land = span * (.4 + .6 * (i + 1) / n) + (Math.random() - .5) * .15;
     scramble(ch, i * .03, Math.min(span, land));
   });
-  gsap.to('[data-after]', { autoAlpha: 1, y: 0, duration: 1, stagger: .15, ease: 'power3.out', delay: span + .05 });
+  gsap.to('[data-after]', { autoAlpha: 1, y: 0, duration: 1, stagger: .15, ease: 'power3.out', delay: span + .05, onStart: startStatus });
   gsap.delayedCall(span + .5, () => { settled = true; });
 }
+// Status chip: the label decodes from line to line (same glyph-flicker language as the headline), looping.
+const statusEl = document.querySelector('[data-status]');
+const statusText = document.querySelector('[data-status-text]');
+const phrases = statusEl.dataset.phrases.split('|');
+let phraseIdx = -1;
+if (!reduce) statusText.textContent = phrases[0];
+function decodeInto(el, target, dur) {
+  const state = { t: 0 }, n = target.length;
+  gsap.to(state, {
+    t: 1, duration: dur, ease: 'none',
+    onUpdate: () => {
+      const settled = Math.floor(state.t * n * 1.15); // letters lock in left to right
+      el.textContent = target.split('').map((c, i) =>
+        i < settled || c === ' ' ? c : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]).join('');
+    },
+    onComplete: () => { el.textContent = target; }
+  });
+}
+function nextPhrase() {
+  phraseIdx = (phraseIdx + 1) % phrases.length;
+  decodeInto(statusText, phrases[phraseIdx], .7);
+  gsap.delayedCall(.7 + 2.4, nextPhrase);
+}
+let statusStarted = false;
+function startStatus() { if (statusStarted || reduce) return; statusStarted = true; nextPhrase(); }
 ['wheel', 'touchmove', 'keydown'].forEach(e => addEventListener(e, typeTitle, { once: true, passive: true }));
 addEventListener('scroll', typeTitle, { once: true, passive: true });
 setTimeout(() => { if (intro.paused) typeTitle(); }, 3500); // autoplay blocked / paused: don't leave the hero without its statement

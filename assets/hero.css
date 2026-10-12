@@ -21,7 +21,12 @@
   text-transform:uppercase;max-width:none}
 .hero__title .line{overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
 .hero__row{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-30);flex-wrap:wrap}
-.hero__lede{max-width:none;font-size:var(--text-body);line-height:1.2;letter-spacing:-.19px;color:rgba(240,238,235,.85)}
+/* Status chip: signal dot + cycling mono label (the one place colour appears) */
+.status{display:inline-flex;align-items:center;gap:var(--space-12);color:var(--tribe-warm-white);
+  font-family:var(--font-mono);font-weight:700;font-size:var(--text-label);line-height:1;text-transform:uppercase;letter-spacing:.96px}
+.status__dot{width:8px;height:8px;border-radius:50%;background:var(--tribe-signal);flex:none;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(232,163,61,.45)}50%{opacity:.55;box-shadow:0 0 0 7px rgba(232,163,61,0)}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hero__actions{display:flex;gap:var(--space-10);flex-wrap:wrap}
 
 .hero__progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(240,238,235,.15)}
@@ -40,7 +45,6 @@
   background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease-calm)}
 .btn--chip:hover::after,.btn--chip:focus-visible::after{transform:scaleX(1)}
 .btn--chip:active{opacity:.6}
-@media (min-width:721px){.hero__lede{white-space:nowrap}}
 @media (max-width:720px){
   .hero__content{padding-bottom:60px}
 }
@@ -73,10 +77,7 @@
 
 @media (min-width:901px){.hero__title{white-space:nowrap}}
 
-.br-m{display:none}
-@media (max-width:720px){.br-m{display:inline}}
 
 /* room for the descender of the "g" above the paragraph */
 .hero__row{margin-top:0}
 @media (min-width:901px){.hero__row{margin-top:clamp(4px,.6vw,10px)}}
-@media (max-width:720px){.hero__lede{font-size:clamp(14px,4vw,19px)}}
