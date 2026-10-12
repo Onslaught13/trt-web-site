@@ -60,6 +60,7 @@ if (!reduce) {
 // so the hand-off is invisible and the loop never zooms or fades.
 const bar = document.querySelector('[data-progress]');
 let active = intro;
+const TITLE_AT = 5; // seconds of footage at which the headline starts decoding (film is ~15s)
 
 function handOff() {
   if (active === loop) return;
@@ -73,6 +74,7 @@ intro.addEventListener('ended', handOff);
 gsap.ticker.add(() => {
   if (active === intro && intro.duration) {
     gsap.set(bar, { scaleX: intro.currentTime / intro.duration });
+    if (intro.currentTime >= TITLE_AT) typeTitle();
     if (intro.currentTime >= intro.duration - .15) handOff();
   }
 });
