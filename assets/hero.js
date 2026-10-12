@@ -6,17 +6,30 @@ const loop = document.querySelector('[data-video-loop]');
 const title = document.querySelector('[data-title]');
 
 // The title decodes (each letter cycles through random glyphs, then lands) once the film reaches its final scene (or when the visitor scrolls / taps / presses a key).
-let chars = [], typed = false;
+let chars = [], typed = false, settled = false;
 const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-document.fonts.ready.then(() => {
+// Wait for Astrobia itself (fonts.ready can resolve before it has started loading), but never hold the page for more than 3s.
+const heroFont = Promise.race([
+  Promise.all([document.fonts.ready, document.fonts.load('1em Astrobia', 'UNWORKINGTHEFALL')]),
+  new Promise(r => setTimeout(r, 3000))
+]);
+
+// Lock each letter's slot to its final glyph width so cycling glyphs never shift the layout.
+function lockWidths() {
+  chars.forEach(ch => { ch.style.width = ''; });
+  chars.forEach(ch => { ch.style.width = ch.getBoundingClientRect().width + 'px'; });
+}
+
+heroFont.then(() => {
   const split = new SplitText(title, { type: 'lines,words,chars', linesClass: 'line', wordsClass: 'word', charsClass: 'char' });
   chars = split.chars;
   title.style.position = 'relative';
   title.setAttribute('aria-label', title.textContent);
   if (reduce) return;
-  // Lock each letter's slot to its final glyph width so cycling glyphs never shift the layout.
-  chars.forEach(ch => { ch.dataset.final = ch.textContent; ch.style.width = ch.getBoundingClientRect().width + 'px'; ch.style.textAlign = 'center'; });
+  chars.forEach(ch => { ch.dataset.final = ch.textContent; ch.style.textAlign = 'center'; });
+  lockWidths();
+  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (!typed || settled) lockWidths(); }, 150); });
   gsap.set(chars, { autoAlpha: 0 });
   gsap.set('[data-fade]', { autoAlpha: 0, y: 16 });
   gsap.set('[data-after]', { autoAlpha: 0, y: 16 });
@@ -55,6 +68,7 @@ function typeTitle() {
     scramble(ch, i * .03, Math.min(span, land));
   });
   gsap.to('[data-after]', { autoAlpha: 1, y: 0, duration: 1, stagger: .15, ease: 'power3.out', delay: span + .05 });
+  gsap.delayedCall(span + .5, () => { settled = true; });
 }
 ['wheel', 'touchmove', 'keydown'].forEach(e => addEventListener(e, typeTitle, { once: true, passive: true }));
 addEventListener('scroll', typeTitle, { once: true, passive: true });
