@@ -10,7 +10,7 @@
   --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 
   --text-nav:14px; --text-label:12px; --text-body:19px;
-  --text-display-xl:clamp(56px,10.5vw,148px); --text-display-hero:clamp(40px,7.2vw,104px);
+  --text-display-xl:clamp(56px,10.5vw,148px); --text-display-hero:clamp(40px,7.2vw,104px); --hero-gap:clamp(14px,1.7vw,26px);
 
   --space-6:6px; --space-10:10px; --space-12:12px; --space-13:13px; --space-15:15px;
   --space-18:18px; --space-30:30px; --space-55:55px;
