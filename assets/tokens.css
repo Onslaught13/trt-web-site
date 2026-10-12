@@ -1,3 +1,4 @@
+@font-face{font-family:'Astrobia';src:url('fonts/astrobia.woff2') format('woff2');font-weight:400;font-display:swap}
 :root{
   --tribe-warm-white:#f0eeeb; --tribe-off-black:#292827; --tribe-true-black:#000;
   --tribe-graphite:#393837; --tribe-charcoal:#30302f; --tribe-light-gray:#d6d3ce;
@@ -5,10 +6,11 @@
   --tribe-signal:#e8a33d;
 
   --font-sans:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-hero:'Astrobia',var(--font-sans);
   --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 
   --text-nav:14px; --text-label:12px; --text-body:19px;
-  --text-display-xl:clamp(56px,10.5vw,148px);
+  --text-display-xl:clamp(56px,10.5vw,148px); --text-display-hero:clamp(40px,7.2vw,104px);
 
   --space-6:6px; --space-10:10px; --space-12:12px; --space-13:13px; --space-15:15px;
   --space-18:18px; --space-30:30px; --space-55:55px;

@@ -35,6 +35,10 @@ The Rescue Tribe is a **redemptive tech company** whose vision is **tech abundan
 ## Typography
 Primary **Inter** (substitute for Agility Diatype), mono **IBM Plex Mono**. OpenType `ss01` where supported.
 
+**Hero title only:** **Astrobia** (`--font-hero`, `assets/fonts/astrobia.woff2`) — hairline display face, uppercase only, tracking 0, `--text-display-hero` clamp(40, 7.2vw, 104px). A deliberate exception to sentence case and to the Inter display rule; never used for body, nav or labels. **Licence:** the bundled file is the *Freeware, Non-Commercial* version — buy the full licence (and confirm web embedding) and swap the font file before this ships to production.
+
+The hero title *decodes* on load: each letter cycles through random A–Z glyphs (~22/s, 0.5–0.95s), staggered left to right, then lands on its real character. Letter slots are width-locked so nothing shifts. Reduced-motion users get the static title.
+
 | Role | Family | Wt | Size | LH | Tracking |
 |---|---|---|---|---|---|
 | display-xl (hero) | Inter | 400 | clamp(56, 10vw, 140px) | 0.88 | -0.04em |
