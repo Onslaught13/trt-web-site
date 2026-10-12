@@ -61,7 +61,7 @@ Radii: buttons 6 · cards/nav 12 · icons 2 · destination pills 24. Nothing lar
 - **Warm-white compact button** — fill `#f0eeeb`, text `#292827`, mono 700 12px/.72px, radius 6, padding 13×15.
 - **Black outline button** — fill `rgba(0,0,0,.8)`, text + 1px border `#f0eeeb`, radius 6, padding 15.
 - **Playback control** — lower-right, mono label "PAUSE / PLAY" with a 2px-radius square icon.
-- **Status chip** — mono label with Signal dot (pulses slowly); the only place colour appears. In the hero it replaces the sub-headline and cycles *The Rescue Tribe → Established 2023 → Creating Tech Abundance* (`data-phrases` in `index.html`): each line decodes in over 0.7s (same glyph-flicker as the title), holds 2.4s, loops. Appears when the title finishes decoding. Reduced-motion: static *Creating Tech Abundance*; screen readers get all three lines.
+- **Status chip** — mono label with Signal dot (pulses slowly); the only place colour appears. In the hero it replaces the sub-headline and cycles *The Rescue Tribe → Established 2023 → Creating Tech Abundance → Building for the Global South* (`data-phrases` in `index.html`): each line decodes in over 0.7s (same glyph-flicker as the title), holds 2.4s, loops. Appears when the title finishes decoding. Reduced-motion: static *Creating Tech Abundance*; screen readers get all four lines.
 - **Utility card / media card / graphite pill / footer** — as in the Digit 5 reference (see tokens above); not used in the hero build.
 
 ## Do
