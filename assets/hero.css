@@ -79,3 +79,6 @@
 
 
 /* room for the descender of the "g" above the paragraph */
+
+/* Placeholder page (blank) so the page rail can be previewed */
+.page--blank{min-height:100svh;background:var(--tribe-warm-white);color:var(--tribe-off-black)}
