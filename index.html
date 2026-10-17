@@ -11,20 +11,15 @@
 <link rel="preload" href="assets/fonts/astrobia.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/hero.css">
-<link rel="stylesheet" href="assets/pager.css">
 </head>
 <body>
 <header class="nav" data-nav>
   <a class="nav__brand" href="#" aria-label="The Rescue Tribe home"><svg class="nav__mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="669 423 594 1102" fill="currentColor"><path d="M669 423H938V632H834V527H669Z"/><path d="M994 423H1263V527H1098V632H994Z"/><path d="M669 688H1263V951H1098V1043H993V847H1159V792H773V1043H669Z"/><path d="M833 847H937V1043H833Z"/><path d="M669 1099H1263V1203H669Z"/><path d="M669 1259H1263V1363H1019V1525H915V1363H669Z"/></svg></a>
-  <nav class="nav__links" aria-label="Primary">
-    <a class="btn btn--chip" href="#products">Products</a>
-    <a class="btn btn--chip" href="#partners">Partners</a>
-  </nav>
   <a class="btn btn--light" href="#contact">Connect</a>
 </header>
 
 <main>
-<section class="hero" data-hero data-page data-page-label="Origin">
+<section class="hero" data-hero>
   <div class="hero__media" data-media aria-hidden="true">
     <video class="hero__video" data-video-loop muted loop playsinline preload="auto" src="assets/video/hero-loop.mp4"></video>
     <video class="hero__video" data-video-intro muted playsinline preload="auto" src="assets/video/hero.mp4"></video>
@@ -45,13 +40,11 @@
   <div class="hero__progress" aria-hidden="true"><span data-progress></span></div>
 </section>
 
-<section class="page page--blank" id="products" data-page data-page-label="Products" aria-label="Products"></section>
 </main>
 
 <script src="assets/js/gsap.min.js"></script>
 <script src="assets/js/ScrollTrigger.min.js"></script>
 <script src="assets/js/SplitText.min.js"></script>
 <script src="assets/hero.js"></script>
-<script src="assets/pager.js"></script>
 </body>
 </html>
